@@ -7,7 +7,7 @@ board_len = 20
 board = [["." for _ in range(board_len)] for _ in range(board_len)]
 
 
-y ,x = random.randint(0, board_len - 1), random.randint(0, board_len - 1)
+y, x = random.randint(0, board_len - 1), random.randint(0, board_len - 1)
 y1, x1 = random.randint(0, board_len - 1), random.randint(0, board_len - 1)
 y2, x2 = random.randint(0, board_len - 1), random.randint(0, board_len - 1)
 
