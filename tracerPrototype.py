@@ -3,13 +3,13 @@ import time
 import math
 import random
 
-board_len = 20
-board = [["." for _ in range(board_len)] for _ in range(board_len)]
+BOARD_LEN = 20
+board = [["." for _ in range(BOARD_LEN)] for _ in range(BOARD_LEN)]
 
 
-y, x = random.randint(0, board_len - 1), random.randint(0, board_len - 1)
-y1, x1 = random.randint(0, board_len - 1), random.randint(0, board_len - 1)
-y2, x2 = random.randint(0, board_len - 1), random.randint(0, board_len - 1)
+y, x = random.randint(0, BOARD_LEN - 1), random.randint(0, BOARD_LEN - 1)
+y1, x1 = random.randint(0, BOARD_LEN - 1), random.randint(0, BOARD_LEN - 1)
+y2, x2 = random.randint(0,  - 1), random.randint(0, BOARD_LEN - 1)
 
 
 p = board[y][x] = "x"
@@ -32,7 +32,7 @@ def get_dist(o_y, o_x):
     return distance
 
 
-wait = 0.5
+wait = 0.2
 
 while y != y1 or x != x1:
     if y < y1:
