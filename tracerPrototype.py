@@ -4,85 +4,69 @@ import math
 import random
 
 BOARD_LEN = 20
-board = [["." for _ in range(BOARD_LEN)] for _ in range(BOARD_LEN)]
+board = [["." for _ in range(BOARD_LEN)] for _ in range(BOARD_LEN)] # create board
+p_loc = [random.randint(0, BOARD_LEN - 1), random.randint(0, BOARD_LEN - 1)] # player location
+board[p_loc[0]][p_loc[1]] = "x" # print player to board
 
 
-y, x = random.randint(0, BOARD_LEN - 1), random.randint(0, BOARD_LEN - 1)
-y1, x1 = random.randint(0, BOARD_LEN - 1), random.randint(0, BOARD_LEN - 1)
-y2, x2 = random.randint(0,  - 1), random.randint(0, BOARD_LEN - 1)
+class Coin():
+    """Coins are the objective of the program. \n
+    Automatically creates coin location and adds it to board"""
+
+    def __init__(self):
+        self.location = (random.randint(0, BOARD_LEN - 1), random.randint(0, BOARD_LEN - 1))
+        board[self.location[0]][self.location[1]] = "o"        
 
 
-p = board[y][x] = "x"
-o1 = board[y1][x1] = "o"
-o2 = board[y2][x2] = "o"
-
-
-def print_b():
+def print_board():
     os.system('cls' if os.name == 'nt' else 'clear') # clear board
-    for j in range(len(board)):
+    for j in range(len(board)): # print loop
         for i in board[j]:
             print(i, end=" ")
         print()
 
 
-def get_dist(o_y, o_x):
-    dist_y = (y - o_y)
-    dist_x = (x - o_x)
-    distance = math.sqrt(dist_x**2 + dist_y**2)
-    return distance
+def move_p(o_loc):
+    wait = 0.1
+
+    while p_loc[0] != o_loc[0] or p_loc[1] != o_loc[1]:
+        if p_loc[0] < o_loc[0]:
+            board[p_loc[0]][p_loc[1]] = "."
+            p_loc[0] += 1
+            board[p_loc[0]][p_loc[1]] = "x"
+            print_board()
+            time.sleep(wait)
+        if p_loc[0] > o_loc[0]:
+            board[p_loc[0]][p_loc[1]] = "."
+            p_loc[0] -= 1
+            board[p_loc[0]][p_loc[1]] = "x"
+            print_board()
+            time.sleep(wait)
+        if p_loc[1] < o_loc[1]:
+            board[p_loc[0]][p_loc[1]] = "."
+            p_loc[1] += 1
+            board[p_loc[0]][p_loc[1]] = "x"
+            print_board()
+            time.sleep(wait)
+        if p_loc[1] > o_loc[1]:
+            board[p_loc[0]][p_loc[1]] = "."
+            p_loc[1] -= 1
+            board[p_loc[0]][p_loc[1]] = "x"
+            print_board()
+            time.sleep(wait)
 
 
-wait = 0.2
+def main():
+    o1 = Coin()
+    o2 = Coin()
+    o3 = Coin()
+    o4 = Coin()
 
-while y != y1 or x != x1:
-    if y < y1:
-        board[y][x] = "."
-        y += 1
-        board[y][x] = "x"
-        print_b()
-        time.sleep(wait)
-    elif y > y1:
-        board[y][x] = "."
-        y -= 1
-        board[y][x] = "x"
-        print_b()
-        time.sleep(wait)
-    elif x < x1:
-        board[y][x] = "."
-        x += 1
-        board[y][x] = "x"
-        print_b()
-        time.sleep(wait)
-    elif x > x1:
-        board[y][x] = "."
-        x -= 1
-        board[y][x] = "x"
-        print_b()
-        time.sleep(wait)
+    coins = (o1, o2, o3, o4)
 
+    for coin in coins:
+        move_p(coin.location)
 
-while y != y2 or x != x2:
-    if y < y2:
-        board[y][x] = "."
-        y += 1
-        board[y][x] = "x"
-        print_b()
-        time.sleep(wait)
-    elif y > y2:
-        board[y][x] = "."
-        y -= 1
-        board[y][x] = "x"
-        print_b()
-        time.sleep(wait)
-    elif x < x2:
-        board[y][x] = "."
-        x += 1
-        board[y][x] = "x"
-        print_b()
-        time.sleep(wait)
-    elif x > x2:
-        board[y][x] = "."
-        x -= 1
-        board[y][x] = "x"
-        print_b()
-        time.sleep(wait)
+    print_board()
+
+main()
